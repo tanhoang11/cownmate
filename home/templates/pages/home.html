@@ -1,0 +1,33 @@
+{%extends "pages\base.html" %}
+{%block title %}Home {%endblock %}
+{%load static %}
+{%block banner %}
+<div class="banner">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="{% static 'images/banner/cover.jpg' %}" alt="Product 1" />
+      </div>
+      <div class="swiper-slide">
+        <img
+          src="https://lh4.googleusercontent.com/-ivzLUP9R4o4/WH8OSphjRXI/AAAAAAAACDY/kj_Qa55sCOwJh9R5pgBsL3Dlz4fFpvDvQCLcB/s1600/slider.jpg"
+          alt="Product 2"
+        />
+      </div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</div>
+<div class="container_1">
+  <img
+    src="https://media.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/April2024/mceclip2_67.jpg"
+    alt="Your Image"
+  />
+  <div class="overlay">
+    <h2>ĐỒ CHẠY BỘ</h2>
+    <h5>Trải nghiệm chưa từng có trong mỗi sảy chân</h5>
+    <button>KHÁM PHÁ NGAY</button>
+  </div>
+</div>
+{%endblock banner%}

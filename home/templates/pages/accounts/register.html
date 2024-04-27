@@ -1,0 +1,69 @@
+{%extends "pages\base.html" %}
+{%block title %}Register {%endblock %}
+{%load static %}
+{%block register %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" /> 
+
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-8 col-xl-6">
+          <div class="card rounded-3">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+              class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+              alt="Sample photo">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Sign Up</h3>
+  
+              <form class="px-md-2" method="POSt" action="">
+                {% csrf_token %}
+
+                <div data-mdb-input-init class="form-outline mb-4">                  
+                  <label class="form-label" for="form3Example1q">User Name</label>
+                  {{ form.username }}
+                </div>
+
+                <div data-mdb-input-init class="form-outline mb-4">                  
+                    <label class="form-label" for="form3Example1q">Email</label>
+                    {{ form.email }}
+                </div>
+
+                <div data-mdb-input-init class="form-outline mb-4">                  
+                    <label class="form-label" for="form3Example1q">First Name</label>
+                    {{ form.first_name }}
+                </div>
+
+                <div data-mdb-input-init class="form-outline mb-4">                  
+                    <label class="form-label" for="form3Example1q">Last Name</label>
+                    {{ form.last_name }}
+                </div>
+
+                <div data-mdb-input-init class="form-outline mb-4">                  
+                    <label class="form-label" for="form3Example1q">Password</label>
+                    {{ form.password1 }}
+                </div>
+
+                <div data-mdb-input-init class="form-outline mb-4">                  
+                    <label class="form-label" for="form3Example1q">Repeat Password</label>
+                    {{ form.password2 }}
+                </div>         
+                             
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-lg mb-1">Submit</button>
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">You have account <a href="/login/">Login</a></h3>
+
+              </form>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- <h5>Register</h5>
+    <form method="POST" action="">
+    {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="Create user">
+    </form> -->
+
+{% endblock register %}

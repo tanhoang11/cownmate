@@ -1,0 +1,22 @@
+{%extends "pages\base.html" %}
+{%block title %} Products {%endblock %}
+{%load static %}
+{%block products %}
+<div class="product-container">
+    {%for product in products %}
+
+    <div class="product">
+
+    <img src="{{product.ImageUrl}}" alt="Product Image">
+    <h5 class="name">{{product.name}}</h5>
+    <p class="price">{{product.price}} $</p>
+    <div class="buttons">
+        <button data-product={{product.id}} data-action="add" class="add-to-cart update-cart">Add to Cart</button>
+        <button class="view">View</button>
+    </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{%endblock products %}
