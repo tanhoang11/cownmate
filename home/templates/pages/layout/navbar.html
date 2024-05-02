@@ -1,31 +1,107 @@
 {% load static %}
+<style>
+    .navbar {
+        background-color: #333;
+        overflow: hidden;
+    }
 
-<header class="header" style="width: 100%;">
-    <div class="logo">
-      <a href="/"
-        ><img src="{% static 'images/logo/logo.png' %}" alt="Logo"
-      /></a>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="{% url 'products' %}">Product</a></li>
-        <li><a href="{% url 'register' %}">Login</a></li>
-      </ul>
-    </nav>
-    <div class="search">
-      <input type="text" placeholder="Search..." />
-      <button type="submit">Search</button>
-    </div>
-    <div>
-      <span>hello {{request.user}}</span>
-      <span><a href="{% url 'logout' %}">logout</a></span>
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
 
+    .navbar input[type=text] {
+        padding: 8px;
+        margin-top: 8px;
+        margin-right: 16px;
+        border: none;
+        font-size: 17px;
+        border-radius: 20px;
+        background-color: #f2f2f2;
+        width: 300px;
+    }
+    .navbar input[type=text]:focus {
+        background-color: #ddd; 
+        outline: none; 
+    }
+
+    .dropdown {
+        float: left;
+        overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+        font-size: 17px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 20px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+
+    .navbar a:hover, .dropdown:hover .dropbtn {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    .navbar button[type=submit] {
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: 20px;
+    background-color: #1ca048; 
+    color: white; 
+    transition: background-color 0.3s; 
+    }
+
+    .navbar button[type=submit]:hover {
+    background-color: #0056b3; 
+    }
+</style>
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn" style="margin-right: 30px;">Phân loại sản phẩm</button>
+        <div class="dropdown-content">
+            {% for category  in categories %}
+            <a href="{% url 'category' %}?category={{category.slug}}">{{category.name}}</a>
+            {% endfor %}
+        </div>
     </div>
-    <div class="cart" style="display: flex;">
-        <p id="cart-total">{{cartItems}}</p>
-        <a href="{% url 'cart' %}">
-          <img id="cart-icon" style="margin-right: 20px;" src="{% static 'images/logo/shoppingcart.png' %}"  alt="Shopping Cart"/>
-        </a>        
-    </div>        
-  </header>
+    <form method = POST action = "{% url 'search' %}">
+        {% csrf_token %}
+        <input type="text" placeholder="Search..." name="searched">
+        <button type="submit" style="margin-left: 10px;">Search</button>
+    </form>
+</div>

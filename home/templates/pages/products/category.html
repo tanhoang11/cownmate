@@ -1,26 +1,26 @@
-{%extends "pages\base.html" %}
+{% extends 'pages/base.html' %}
+{% load static %}
 {%block title %} Products {%endblock %}
-{%load static %}
-{%block products %}
+{% block category %}
 
 {% include 'pages/layout/navbar.html' %}
 
-<div class="product-container">   
+<div class="product-container">
     {%for product in products %}
 
-    <div class="product" style="width: 290px;">
-        <a href="{% url 'detail' %}?id={{product.id}}">
-            <img src="{{product.ImageUrl}}" alt="Product Image">
-        </a>
-   
+    <div class="product">
+
+    <a href="{% url 'detail' %}?id={{product.id}}">
+        <img src="{{product.ImageUrl}}" alt="Product Image">
+    </a>
     <h5 class="name">{{product.name}}</h5>
     <p class="price">{{product.price}} $</p>
     <div class="buttons">
         <button data-product={{product.id}} data-action="add" class="add-to-cart update-cart">Add to Cart</button>
     </div>
     </div>
-
+    
     {% endfor %}
 </div>
 
-{%endblock products %}
+{% endblock category %}

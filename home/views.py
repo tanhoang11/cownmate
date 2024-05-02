@@ -6,6 +6,46 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 # Create your views here.
+def detail(request):
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer,complete = False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+
+    else:
+        items = []
+        cartItems = 0
+        order = {'get_cart_items':0,'get_order_total':0}
+    id = request.GET.get('id','')
+    products = Product.objects.filter(id=id)
+    context = {'products':products,'items': items,'order': order,'cartItems': cartItems}
+    return render(request,'pages/products/detail.html',context)
+
+def category(request):
+    categories = Category.objects.filter(is_sub = False)
+    active = request.GET.get('category','')
+    if active:
+        products = Product.objects.filter(category__slug = active) 
+
+    context= {'id':id,'categories': categories,'products': products,'active': active}
+    return render(request,'pages/products/category.html',context)
+def search(request):
+    if request.method == 'POST':
+         searched = request.POST["searched"]
+         keys = Product.objects.filter(name__contains = searched)
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer,complete = False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_items':0,'get_order_total':0}
+        cartItems = order['get_cart_items']
+    categories = Category.objects.filter(is_sub = False)
+    products = Product.objects.all()
+    return render(request, 'pages/products/search.html',{'categories':categories,'searched':searched, 'keys':keys,'products': products,'cartItems': cartItems})
 
 def register(request):
     form = UserForm()    
@@ -84,8 +124,9 @@ def products(request):
         cartItems = []
         order = {'get_cart_items':0,'get_order_total':0}
         cartItems = order['get_cart_items']
+    categories = Category.objects.filter(is_sub = False)
     products = Product.objects.all()
-    context = {'products': products,'cartItems': cartItems}    
+    context = {'categories':categories, 'products': products,'cartItems': cartItems}    
     return render(request, 'pages/products/products.html',context)
 
 def updateItem(request):

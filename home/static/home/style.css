@@ -1,3 +1,10 @@
+body {
+    /* font-family: Arial, sans-serif; */
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+
+}
 .header {
     display: flex;
     justify-content: space-between;
@@ -129,7 +136,7 @@ a:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    width: 320px;
+    /* width: 280px; */
     text-align: center;
     margin: 12px;
     background-color: #f9f9f9;
@@ -173,7 +180,21 @@ a:hover {
 .product .buttons button:hover {
     background-color: #0056b3;
 }
+.view {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.view:hover {
+    background-color: #0056b3;
+}
 .row{
     width: 100%;
 }
+
 

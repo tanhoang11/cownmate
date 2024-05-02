@@ -1,0 +1,37 @@
+{% load static %}
+
+<header class="header" style="width: 100%;">
+    <div class="logo">
+      <a href="/"
+        ><img src="{% static 'images/logo/logo.png' %}" alt="Logo"
+      /></a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'products' %}">Product</a></li>
+      </ul>
+    </nav>
+    <form class="search" method = POST action = "{% url 'search' %}">
+      {% csrf_token %}
+      <input type="text" placeholder="Search..." aria-label="Search" name="searched"/>
+      <button type="submit">Search</button>
+    </form>
+    <div>
+      <span>hello {{request.user}}</span>
+      {% comment %} <span><a href="{% url 'logout' %}">logout</a></span> {% endcomment %}
+      
+    </div>
+    <nav>
+      <ul>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+      </ul>
+    </nav>
+    <div class="cart" style="display: flex;">
+        <p id="cart-total">{{cartItems}}</p>
+        <a href="{% url 'cart' %}">
+          <img id="cart-icon" style="margin-right: 20px;" src="{% static 'images/logo/shoppingcart.png' %}"  alt="Shopping Cart"/>
+        </a>        
+    </div>        
+  </header>
