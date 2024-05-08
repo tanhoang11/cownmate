@@ -14,7 +14,7 @@
         <a class="button" href="{% url 'products' %}">&#x2190; Continue Shopping</a>
         <h2 class="product-title">{{product.name}}</h2>
         <p class="product-description">{{product.detail}}</p>
-        <p class="product-price">$ {{product.price}}</p>
+        <p class="product-price">{{product.price}} $</p>
         <button data-product={{product.id}} data-action="add" class="add-to-cart update-cart">Add to card</button>
     </div>
 </div>
