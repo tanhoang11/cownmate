@@ -12,11 +12,11 @@
         <li><a href="{% url 'products' %}">Product</a></li>
       </ul>
     </nav>
-    <form class="search" method = POST action = "{% url 'search' %}">
+    {% comment %} <form class="search" method = POST action = "{% url 'search' %}">
       {% csrf_token %}
       <input type="text" placeholder="Search..." aria-label="Search" name="searched"/>
       <button type="submit">Search</button>
-    </form>
+    </form> {% endcomment %}
     <div>
       {% comment %} <span>hello {{request.user}}</span> {% endcomment %}
       {% comment %} <span><a href="{% url 'logout' %}">logout</a></span> {% endcomment %}
