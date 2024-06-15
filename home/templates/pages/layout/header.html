@@ -6,10 +6,108 @@
         ><img src="{% static 'images/logo/logo.png' %}" alt="Logo"
       /></a>
     </div>
+    <style>
+      .navbar {
+          background-color: black;
+      }
+  
+      .navbar a {
+          float: left;
+          display: block;
+          /* color: white; */
+          text-align: center;
+          padding: 14px 20px;
+          text-decoration: none;
+      }
+  
+      .navbar input[type=text] {
+          padding: 8px;
+          margin-top: 8px;
+          margin-right: 16px;
+          border: none;
+          font-size: 17px;
+          border-radius: 20px;
+          /* background-color: #f2f2f2; */
+          width: 300px;
+      }
+      .navbar input[type=text]:focus {
+          /* background-color: #ddd;  */
+          outline: none; 
+      }
+  
+      .dropdown {
+          float: left;
+          overflow: hidden;
+      }
+  
+      .dropdown .dropbtn {
+          font-size: 17px;
+          border: none;
+          outline: none;
+          /* color: white; */
+          padding: 14px 20px;
+          /* background-color: inherit; */
+          font-family: inherit;
+          margin: 0;
+      }
+  
+      .navbar a:hover, .dropdown:hover .dropbtn {
+          /* background-color: #ddd; */
+          color: black;
+      }
+  
+      .dropdown-content {
+          display: none;
+          position: absolute;
+          /* background-color: #f9f9f9; */
+          min-width: 160px;
+          /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+          z-index: 1;
+      }
+  
+      .dropdown-content a {
+          float: none;
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+          text-align: left;
+      }
+  
+      /* .dropdown-content a:hover {
+          background-color: #ddd;
+      }
+   */
+      .dropdown:hover .dropdown-content {
+          display: block;
+      }
+      .navbar button[type=submit] {
+      padding: 8px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 20px;
+      background-color: #1ca048; 
+      /* color: white;  */
+      /* transition: background-color 0.3s;  */
+      }
+  
+      .navbar button[type=submit]:hover {
+      background-color: #0056b3; 
+      }
+  </style>
+  <div class="navbar">      
+      <form method = POST action = "{% url 'search' %}">
+          {% csrf_token %}
+          <input type="text" placeholder="Search..." name="searched">
+          <button type="submit" style="margin-left: 10px;">Search</button>
+      </form>
+  </div>
+  
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="{% url 'products' %}">Product</a></li>
+        {% comment %} <li><a href="/">Home</a></li> {% endcomment %}
+        {% comment %} <li><a href="{% url 'products' %}">Product</a></li> {% endcomment %}
       </ul>
     </nav>
     {% comment %} <form class="search" method = POST action = "{% url 'search' %}">
@@ -22,6 +120,7 @@
       {% comment %} <span><a href="{% url 'logout' %}">logout</a></span> {% endcomment %}
       
     </div>
+    
     <nav>
       <ul>
         <li><a href="{% url 'logout' %}">Logout</a></li>

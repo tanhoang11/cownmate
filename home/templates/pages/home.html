@@ -1,23 +1,30 @@
 {%extends "pages\base.html" %}
 {%block title %}Home {%endblock %}
 {%load static %}
-{%block banner %}
-<!-- <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />  -->
+{%block products %}
 
-{% comment %} <div class="banner" >
-  <img src="{% static 'images/banner/cover.jpg' %}" class="slide">
-  <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=80,format=auto/uploads/April2024/EX-DRY_BANNER_(1).png" class="slide">
+{% include 'pages/layout/navbar.html' %}
+{% include 'pages/products/banner.html' %}
+
+{% block banner %}
+
+{% endblock banner %} 
+
+
+<div class="product-container">   
+    {%for product in products %}
+    <div class="product" style="width: 300px; margin: 25px;">
+        <a href="{% url 'detail' %}?id={{product.id}}">
+            <img src="{{product.ImageUrl}}" alt="Product Image">
+        </a>   
+    <h5 class="name">{{product.name}}</h5>
+    <p class="price">{{product.price}} $</p>
+    <div class="buttons">
+        <button data-product={{product.id}} data-action="add" class="add-to-cart update-cart">Add to Cart</button>
+    </div>
+    </div>
+
+    {% endfor %}
 </div>
+{%endblock products %}
 
-<div class="container_1">
-  <img
-    src="https://media.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/April2024/mceclip2_67.jpg"
-    alt="Your Image"
-  />
-  <div class="overlay">
-    <h2>ĐỒ CHẠY BỘ</h2>
-    <h5>Trải nghiệm chưa từng có trong mỗi sảy chân</h5>
-    <button>KHÁM PHÁ NGAY</button>
-  </div>
-</div> {% endcomment %}
-{%endblock banner%}

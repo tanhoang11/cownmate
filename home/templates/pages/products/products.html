@@ -4,10 +4,16 @@
 {%block products %}
 
 {% include 'pages/layout/navbar.html' %}
+{% include 'pages/products/banner.html' %}
+
+{% block banner %}
+
+{% endblock banner %} 
+
 
 <div class="product-container">   
     {%for product in products %}
-    <div class="product" style="width: 290px;">
+    <div class="product" style="width: 300px; margin: 20px;" >
         <a href="{% url 'detail' %}?id={{product.id}}">
             <img src="{{product.ImageUrl}}" alt="Product Image">
         </a>   

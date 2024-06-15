@@ -2,16 +2,106 @@
 {% load static %}
 {%block title %} Detail {%endblock %}
 {% block detail %}
-<link rel="stylesheet" href="{% static 'home/detail.css' %}"/>
+<style>
+    /* General styling for the product details page */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
 
+.product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    transition: transform 0.2s;
+}
+
+.product-details:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.product-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.product-info {
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.product-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.product-description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.product-price {
+    font-size: 20px;
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+.add-to-cart {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #218838;
+}
+
+</style>
 {% include 'pages/layout/navbar.html' %}
 {% for product in products %}
 <div class="product-details" >
-    <a class="product-image" href="{% url 'detail' %}?id={{product.id}}">
-        <img class="Image" src="{{product.ImageUrl}}" alt="Product Image">
-    </a>
+    <a class="button" href="{% url 'products' %}">&#x2190; Continue Shopping</a>    
+    <img class="Image" src="{{product.ImageUrl}}" alt="Product Image">
+    
     <div class="product-info">
-        <a class="button" href="{% url 'products' %}">&#x2190; Continue Shopping</a>
         <h2 class="product-title">{{product.name}}</h2>
         <p class="product-description">{{product.detail}}</p>
         <p class="product-price">{{product.price}} $</p>

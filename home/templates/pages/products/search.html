@@ -5,19 +5,101 @@
 {% block search %}
 
 {% include 'pages/layout/navbar.html' %}
+<style>
+   /* Add this CSS to your main stylesheet or a specific stylesheet for the component */
 
-<!-- <h5>{{searched}}</h5> -->
+/* Add this CSS to your main stylesheet or a specific stylesheet for the component */
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.search-notification {
+    font-size: 1.2em;
+    color: #007bff;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #e9f7ff;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #b8daff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.product {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    transition: transform 0.3s;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+.product .name {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+.product .price {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.product .buttons {
+    margin: 10px 0;
+}
+
+.product .add-to-cart {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product .add-to-cart:hover {
+    background-color: #218838;
+}
+
+
+
+</style>
 <div class="product-container">
-    {%for product in keys %}
-    <div class="product">
-    <img src="{{product.ImageUrl}}" alt="Product Image">
-    <h5 class="name">{{product.name}}</h5>
-    <p class="price">{{product.price}} $</p>
-    <div class="buttons">
-        <button data-product={{product.id}} data-action="add" class="add-to-cart update-cart">Add to Cart</button>
-        <button class="view">View</button>
+    <h5 class="search-notification">Kết quả tìm kiếm: {{searched}}</h5>
+    
+    <div class="products-list">
+        {% for product in keys %}
+        <div class="product" style="width: 290px;">
+            <a href="{% url 'detail' %}?id={{product.id}}">
+                <img src="{{product.ImageUrl}}" alt="Product Image">
+            </a>
+            <h5 class="name">{{product.name}}</h5>
+            <p class="price">{{product.price}} $</p>
+            <div class="buttons">
+                <button data-product={{product.id}} data-action="add" class="add-to-cart update-cart">Add to Cart</button>
+            </div>
+        </div>    
+        {% endfor %}
     </div>
-    </div>    
-    {% endfor %}
 </div>
 {% endblock search %}
